@@ -8,12 +8,6 @@
 - 컴퓨터 내부
 - 프로세스
 
-↔  
-
-← 연산할 data
-
-→ 연산결과
-
 **Storage - Box**
 
 - Memory
@@ -28,17 +22,6 @@
     → data inconsistency 발생 
     
     = 실행 순서를 정해주는 매커니즘이 필요하다! 
-    
-
-**Execution - Box 1**
-
-↔  
-
-**Storage -  Box**
-
-↔  
-
-**Execution - Box 2**
 
 - S-box를 공유하는 E-box가 여럿 있는 경우, Race Condition의 가능성이 있음
     
@@ -56,7 +39,7 @@
     2. 양 쪽 모두 커널 코드이무로 kernel addreeess space를 공유함
 2. Process 가 system call을 하여 kernel mode로 수행중인데, context switch가 일어나는 경우
     
-    ![Untitled](6%20Process%20%20f95b2/Untitled.png)
+    ![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fae85d40-5bbd-4f8e-b4d2-79c37a8acc50/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220406%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220406T152030Z&X-Amz-Expires=86400&X-Amz-Signature=9381e6ccf634f850d9c71c89dbfb3931185e5f0deeb073c432d5d93b3a80cd3f&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
     
     1. 두 프로세스의 address space간에는 data sharing이 없음
     2. 하지만, system call을 하는 동안에는 kernel address space의 data를 access하게 됨
@@ -65,24 +48,6 @@
     → 해결 : 커널 모드에서 수행중일 때는 CPU를 선점 X
     
 3. Multiprocessor(cpu가 n개)에서 shared memory 내의 kernel data
-    
-    
-    **CPU**
-    
-    count ++;
-    
-    ↔  
-    
-    **Memory**
-    
-    count
-    
-    ↔  
-    
-    **CPU2**
-    
-    count - -;
-    
     1. 어떤 CPU가 마지막으로 count를 store했느냐에 따라 결과가 달라짐 
     2. 이 경우, interrupt를 막는 것만으로 해결되지 않음 
         
